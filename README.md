@@ -9,12 +9,13 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2931079751
 1.游戏性(如何好玩)
 2.架构性(如何抽象)
 
-# Step3 Write Code
+# Step3 Write Code (MonoBehaviour)
 编写开发编辑器
 设计代码架构
 设计成长以及解锁
 
 游戏
 菜单
+# Step4 Change to ECS
 
-# Step4 multiplayer game
+# Step5 multiplayer With ECS (LockStep)
