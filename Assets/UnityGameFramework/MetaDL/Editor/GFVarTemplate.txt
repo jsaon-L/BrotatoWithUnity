@@ -1,0 +1,38 @@
+using GameFramework;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+public class #ClassName# : Variable<#ValueType#>
+{
+    public const string VarName = "#ClassName#";
+
+    public #ClassName#() : base()
+    {
+
+    }
+
+    public #ClassName#(#ValueType# value)
+    {
+        SetValue(value);
+    }
+
+    /// <summary>
+    /// 隐式转换
+    /// </summary>
+    /// <param name="value">ֵ��</param>
+    public static implicit operator #ClassName#(#ValueType# value)
+    {
+        return new #ClassName#(value);
+    }
+
+    /// <summary>
+    /// 隐式转换
+    /// </summary>
+    /// <param name="value">ֵ��</param>
+    public static implicit operator #ValueType#(#ClassName# value)
+    {
+        return value.Value;
+    }
+}
