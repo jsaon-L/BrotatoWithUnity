@@ -1,23 +1,19 @@
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
-public class EnemyEntityLogic : EntityLogic
+public class EnemyEntityLogic : Pawn
 {
-
-    public static Entity Enemy;
-
-    public int HP { get; set; }
-    public float Speed { get; set; } = 3;
 
     public SpriteRenderer Body { get;set; }
     public Material BodyMaterial { get; set; }
 
-    //是否正在展示伤害特效
+    //锟角凤拷锟斤拷锟斤拷展示锟剿猴拷锟斤拷效
     private bool _showHitEffecting;
-    //伤害展示时长
+    //锟剿猴拷展示时锟斤拷
     private float _hitEffectDuration = 0.1f;
     private float _currentHitEffectTime;
 
+    private GameObject _playerPawn;
     protected override void OnInit(object userData)
     {
         base.OnInit(userData);
@@ -28,19 +24,20 @@ public class EnemyEntityLogic : EntityLogic
     protected override void OnShow(object userData)
     {
         base.OnShow(userData);
+        HideHitEffect();
 
-        Enemy = this.Entity;
+        _playerPawn = GameEntry.DataNode.GetData<VarGameObject>("PlayerPawn");
 
         EnemySpawnData spawnData = userData as EnemySpawnData;
 
         if (spawnData == null) 
         {
-            GameFramework.GameFrameworkLog.Error("生成敌人参数错误,无法初始化敌人");
+            GameFramework.GameFrameworkLog.Error("鏁版嵁涓虹┖!");
             return;
         }
 
-        HP = spawnData.SpawnHP; 
-        Speed = spawnData.SpawnSpeed;
+        HP.Value = spawnData.SpawnHP; 
+        MoveSpeed = spawnData.SpawnSpeed;
         transform.position = spawnData.SpawnPosition;
 
         GameFramework.ReferencePool.Release(spawnData);
@@ -50,14 +47,15 @@ public class EnemyEntityLogic : EntityLogic
         base.OnUpdate(elapseSeconds, realElapseSeconds);
 
 
-        if (PlayerEntityLogic.Player) 
+        
+        if (_playerPawn) 
         {
-            var polayerDir = (PlayerEntityLogic.Player.transform.position - transform.position).normalized;
+            var polayerDir = (_playerPawn.transform.position - transform.position).normalized;
             Move(polayerDir);
-
+        
         }
 
-        //伤害特效
+        //锟剿猴拷锟斤拷效
         if (_showHitEffecting)
         {
             _currentHitEffectTime += elapseSeconds;
@@ -85,16 +83,18 @@ public class EnemyEntityLogic : EntityLogic
     }
 
 
-    public void Move(Vector2 move)
-    {
-        transform.Translate(Speed * Time.deltaTime * move);
-    }
 
 
 
-    public void OnHit(float damage)
+    public void OnHit(int damage)
     {
         ShowHitEffect();
+        AddDamge(damage);
+
+        if (HP.Value<=0)
+        {
+            EnemyManager.Instance().KillEnemy(this);
+        }
     }
 }
 

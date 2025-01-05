@@ -3,27 +3,49 @@
   <ResourceCollection>
     <Resources>
       <Resource Name="Animation" LoadType="0" Packed="True" />
+      <Resource Name="Entities" LoadType="0" Packed="True" />
+      <Resource Name="GameMain/Brotato/Weapons/ranged/minigun" LoadType="0" Packed="True" />
     </Resources>
     <Assets>
       <Asset Guid="0179316b5fc7c2946a67c5877c02fc30" ResourceName="Animation" />
-      <Asset Guid="04d7dde7615d71b4db1a0c8d67a62e95" ResourceName="Animation" />
       <Asset Guid="09966b19e546cc94aa84d0743cb2a83d" ResourceName="Animation" />
       <Asset Guid="0a65a68c01a76ea4b8b574827a6467aa" ResourceName="Animation" />
+      <Asset Guid="0d3bd206b17e91842b321f02f5cd99c2" ResourceName="GameMain/Brotato/Weapons/ranged/minigun" />
       <Asset Guid="156d241f796508c4da4fc354a7fbf5a8" ResourceName="Animation" />
+      <Asset Guid="160925a6fe2664f2a978566b819f0af0" ResourceName="Entities" />
       <Asset Guid="236433a27ce40a7429b87d14d8fa3035" ResourceName="Animation" />
       <Asset Guid="24ca310f92a6796408f1db7647ec4e55" ResourceName="Animation" />
+      <Asset Guid="2b16cffaaf9472e489d2376a8643718e" ResourceName="Entities" />
+      <Asset Guid="3455fe69f7ddc4604b95bf9b0a1e88d7" ResourceName="Entities" />
       <Asset Guid="3aa539b1e46111d4299a83c73ebe762c" ResourceName="Animation" />
       <Asset Guid="3be3fac3611f4584695662c4889f722d" ResourceName="Animation" />
       <Asset Guid="3f54fcfdac53aec42ae18a6a1c6d8cb1" ResourceName="Animation" />
+      <Asset Guid="43bb0dd507793e042b0b2da9313be6e7" ResourceName="GameMain/Brotato/Weapons/ranged/minigun" />
+      <Asset Guid="552d750a829f24940a8f71ae8236f08f" ResourceName="Entities" />
       <Asset Guid="56b8df63bbad60749a69e38bc687fadf" ResourceName="Animation" />
+      <Asset Guid="59fd3879265650d4bacbf4cfab1299aa" ResourceName="Animation" />
+      <Asset Guid="5c2c11329b85f104b896e7ee485ce86f" ResourceName="GameMain/Brotato/Weapons/ranged/minigun" />
       <Asset Guid="62af9e5c8f39cfa49af9e10ccf42f1da" ResourceName="Animation" />
+      <Asset Guid="68b336c8484c86446b443d6f66873d4d" ResourceName="Animation" />
       <Asset Guid="6cbc2c323b77f804fb958fa4eca33998" ResourceName="Animation" />
+      <Asset Guid="72ccdf4d2fe69f84d987a4f93d51f5ca" ResourceName="GameMain/Brotato/Weapons/ranged/minigun" />
+      <Asset Guid="735c2bbbeb337f741a9079e0d4f12419" ResourceName="GameMain/Brotato/Weapons/ranged/minigun" />
+      <Asset Guid="7968a8d853c64b4489124b50cad9a47a" ResourceName="Entities" />
+      <Asset Guid="7b1587e59862e6a458793ce9fd5075d1" ResourceName="GameMain/Brotato/Weapons/ranged/minigun" />
+      <Asset Guid="7b5678f93bcad6b4081f5baf1eb65f5b" ResourceName="GameMain/Brotato/Weapons/ranged/minigun" />
       <Asset Guid="7d3f9c4d595c0464ca2b7444744ba63e" ResourceName="Animation" />
       <Asset Guid="7f5aee8da226edf4991598327cb32ce0" ResourceName="Animation" />
+      <Asset Guid="8864ad0166e85734aadc4d8076a04c70" ResourceName="GameMain/Brotato/Weapons/ranged/minigun" />
+      <Asset Guid="8f716bf52c162d644b85e823c5ab91a5" ResourceName="GameMain/Brotato/Weapons/ranged/minigun" />
+      <Asset Guid="9047f7f65a2a8aa479b6efb9d63b2991" ResourceName="Animation" />
+      <Asset Guid="98cfe008ff143384591db306bcea7f07" ResourceName="GameMain/Brotato/Weapons/ranged/minigun" />
       <Asset Guid="9f847ec5e66e03e4ead1d3c5f7b510e8" ResourceName="Animation" />
+      <Asset Guid="a63b8fd4948cfec48b10746b831d639d" ResourceName="Entities" />
+      <Asset Guid="a6d58f54ce5934781962a4f887e834f3" ResourceName="Entities" />
       <Asset Guid="a8c07bbe04fdaf04b80e27f651a8edd6" ResourceName="Animation" />
       <Asset Guid="ab45c3f613f388d43bbf43ec05eb92e2" ResourceName="Animation" />
       <Asset Guid="bbfd75fe6fe00e1448fe988173ede7f9" ResourceName="Animation" />
+      <Asset Guid="c411edb4f7588284796de9cc9591bfba" ResourceName="Animation" />
       <Asset Guid="c7d1e11dd37634b48a9dd4012b8e4306" ResourceName="Animation" />
       <Asset Guid="c9928a2b38739a84dacc37e4a2d63a9a" ResourceName="Animation" />
       <Asset Guid="cadd0764941c8b646ae79b51d0ea8285" ResourceName="Animation" />
@@ -34,6 +56,7 @@
       <Asset Guid="e85864330b68dde498dcb6e8711815d3" ResourceName="Animation" />
       <Asset Guid="f2f4df0b7211e4c42a5638273525d8ee" ResourceName="Animation" />
       <Asset Guid="f438a72a91e1c3c4a9ced40888ffec96" ResourceName="Animation" />
+      <Asset Guid="f68781b829bb2ee419d55138c017b727" ResourceName="Entities" />
     </Assets>
   </ResourceCollection>
 </UnityGameFramework>

@@ -23,3 +23,23 @@ MonoBehaviour:
     packed: 1
     filterType: 0
     searchPatterns: '*.*'
+  - valid: 1
+    name: Entities
+    variant: 
+    fileSystem: 
+    groups: 
+    assetsDirectoryPath: Assets/GameMain/Entities
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'
+  - valid: 1
+    name: 
+    variant: 
+    fileSystem: 
+    groups: 
+    assetsDirectoryPath: Assets/GameMain/Brotato/Weapons/ranged/minigun
+    loadType: 0
+    packed: 1
+    filterType: 0
+    searchPatterns: '*.*'

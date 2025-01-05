@@ -14,7 +14,7 @@ namespace UnityGameFramework.Editor
     /// <summary>
     /// 类型相关的实用函数。
     /// </summary>
-    internal static class Type
+    public static class Type
     {
         private static readonly string[] RuntimeAssemblyNames =
         {
@@ -41,7 +41,7 @@ namespace UnityGameFramework.Editor
         /// </summary>
         /// <typeparam name="T">配置类型。</typeparam>
         /// <returns>配置路径。</returns>
-        internal static string GetConfigurationPath<T>() where T : ConfigPathAttribute
+        public static string GetConfigurationPath<T>() where T : ConfigPathAttribute
         {
             foreach (System.Type type in Utility.Assembly.GetTypes())
             {
@@ -75,7 +75,7 @@ namespace UnityGameFramework.Editor
         /// </summary>
         /// <param name="typeBase">基类类型。</param>
         /// <returns>指定基类的所有子类的名称。</returns>
-        internal static string[] GetRuntimeTypeNames(System.Type typeBase)
+        public static string[] GetRuntimeTypeNames(System.Type typeBase)
         {
             return GetTypeNames(typeBase, RuntimeAssemblyNames);
         }
@@ -85,7 +85,7 @@ namespace UnityGameFramework.Editor
         /// </summary>
         /// <param name="typeBase">基类类型。</param>
         /// <returns>指定基类的所有子类的名称。</returns>
-        internal static string[] GetRuntimeOrEditorTypeNames(System.Type typeBase)
+        public static string[] GetRuntimeOrEditorTypeNames(System.Type typeBase)
         {
             return GetTypeNames(typeBase, RuntimeOrEditorAssemblyNames);
         }

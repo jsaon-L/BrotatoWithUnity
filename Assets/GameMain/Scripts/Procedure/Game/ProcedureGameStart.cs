@@ -34,41 +34,43 @@ namespace StarForce
 
             AwaitableExtensions.SubscribeEvent();
 
+            
+            
 
-            var player = await GameEntry.Entity.ShowEntityAsync(EntityID.GetID, typeof(PlayerEntityLogic), "Assets/GameMain/Entities/Player.prefab", "Player",1,null);
+            var player = await GameEntry.Entity.ShowEntityAsync(
+                EntityID.GetID,
+                typeof(BrotatoPawn),
+                "Assets/GameMain/Entities/Player.prefab", 
+                "Player",
+                1,
+                null);
+            var playerControl = await GameEntry.Entity.ShowEntityAsync(
+                EntityID.GetID,
+                typeof(PlayerControl),
+                "Assets/GameMain/Entities/PlayerControl.prefab", 
+                "Player",
+                1,
+                null);
 
-
-            var spawnEnemyData = EnemySpawnData.Create(new Vector2(5, 5), 5, 2);
-            var enemy = await GameEntry.Entity.ShowEntityAsync(EntityID.GetID, typeof(EnemyEntityLogic), "Assets/GameMain/Entities/Enemy.prefab", "Enemy", 1, spawnEnemyData);
-
+            (playerControl.Logic as PlayerControl).Process(player.Logic as Pawn);
+            
+            
+            EnemyManager.Instance().CreateEnemy();
 
             var gun = await GameEntry.Entity.ShowEntityAsync(EntityID.GetID, typeof(GunEntityLogic), "Assets/GameMain/Entities/Gun.prefab", "Gun", 1, null);
-
             GameEntry.Entity.AttachEntity(gun, player);
+            
+            var gun2 = await GameEntry.Entity.ShowEntityAsync(EntityID.GetID, typeof(GunEntityLogic), "Assets/GameMain/Entities/Gun.prefab", "Gun", 1, null);
+            GameEntry.Entity.AttachEntity(gun2, player);
             //加载游戏
 
-           networkChannel = GameEntry.Network.CreateNetworkChannel("test", ServiceType.Tcp, new NetworkChannelHelper());
-
-
-            //networkChannel.RegisterHandler(new MyPacketHandlerBase());
-            networkChannel.Connect(IPAddress.Parse("127.0.0.1"), 13000);
-            
-            //GameEntry.Event.Subscribe(UnityGameFramework.Runtime.NetworkConnectedEventArgs.EventId,)
-
-
-
-           
+      
         }
 
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-
-
-                networkChannel.Send(new MyPacket() {Name = 6666 });
-            }
+ 
         }
 
        public class MyPacketHandlerBase : PacketHandlerBase

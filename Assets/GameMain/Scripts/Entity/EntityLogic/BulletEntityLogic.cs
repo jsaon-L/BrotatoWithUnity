@@ -1,47 +1,67 @@
+using GameKit.Dependencies.Utilities.ObjectPooling.Examples;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityGameFramework.Runtime;
 
 public class BulletEntityLogic : EntityLogic
 {
     private Vector2 _dir;
-    private float _damage;
+    private int _damage;
+    private float _bulletRange;
 
-    private float _flySpeed = 1f;
+    private float _flySpeed = 10f;
 
 
     private Rigidbody2D _rigidbody2D;
-    ////Éä³Ì
+    private Projectile _projectile;
+
+    private bool _bulletIsLive;
+    
+    ////ï¿½ï¿½ï¿½
     //private float _Radius;
-    ////¿ÉÒÔ´©Í¸¼¸¸ö
+    ////ï¿½ï¿½ï¿½Ô´ï¿½Í¸ï¿½ï¿½ï¿½ï¿½
     //private int 
     protected override void OnInit(object userData)
     {
         base.OnInit(userData);
 
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _projectile = gameObject.GetOrAddComponent<Projectile>();
+        _projectile.OnEndBulletRange += _projectile_OnEndBulletRange;
+    }
+
+    private void _projectile_OnEndBulletRange()
+    {
+        GameEntry.Entity.HideEntity(Entity);
     }
 
     protected override void OnShow(object userData)
     {
         base.OnShow(userData);
-
+        _bulletIsLive = true;
         SpawnBulletData spawnData  = userData as SpawnBulletData;
 
         if (spawnData == null)
         {
-            GameFramework.GameFrameworkLog.Error("Éú³É×Óµ¯²ÎÊı´íÎó,ÎŞ·¨Éú³É×Óµ¯");
+            GameFramework.GameFrameworkLog.Error("æ•°æ®ä¸ºç©º!");
             return;
         }
 
         transform.position = spawnData.Position;
         _dir = spawnData.Dir;
         _damage = spawnData.Damage;
+        _bulletRange = spawnData.BulletRange;
 
         transform.right = _dir;
-        _rigidbody2D.velocity = _flySpeed * _dir;
+        _projectile.StartMove(_flySpeed, _bulletRange);
 
 
         GameFramework.ReferencePool.Release(spawnData);
+    }
+    protected override void OnHide(bool isShutdown, object userData)
+    {
+        base.OnHide(isShutdown, userData);
+        _projectile.StopMove();
     }
 
     protected override void OnUpdate(float elapseSeconds, float realElapseSeconds)
@@ -53,30 +73,25 @@ public class BulletEntityLogic : EntityLogic
     }
 
 
-    void Move(Vector2 translation)
-    {
-        transform.Translate(translation);
-    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //×²µ½¿ÉÉËº¦¶ÔÏó
-        //¿ÉÄÜÊÇµĞÈË
-        //¿ÉÄÜÊÇÖĞÁ¢ÉúÎï
+        //TODO:ä¼˜åŒ–ç¢°æ’å±‚çº§,è®©å­å¼¹å•ç‹¬å±‚çº§å¹¶ä¸”ä¸ä¸å­å¼¹ç¢°æ’
 
+        if (!_bulletIsLive)
+        {
+            return;
+        }
+
+       
         if (collision.CompareTag("Enemy"))
         {
-            //Ê©¼ÓÉËº¦
-
-            //Ê©¼Ó¸÷ÖÖbufĞ§¹û
-
-
-            //²¥·Å±¬Õ¨ÌØĞ§
-
-            //Òş²Ø×Óµ¯
+            //TODO:ä½¿ç”¨æ›´æ¨èçš„æ–¹å¼åˆ¤æ–­Tag
+            _bulletIsLive = false;
+            collision.GetComponent<EnemyEntityLogic>().OnHit(_damage);
+            
             GameEntry.Entity.HideEntity(Entity);
-            collision.GetComponent<EnemyEntityLogic>().OnHit(1);
         }
         //else if (collision.CompareTag("Neutrality"))
         //{

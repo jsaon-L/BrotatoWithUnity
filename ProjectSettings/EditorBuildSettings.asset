@@ -5,15 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Game.unity
-    guid: 1cad953bd033963488c3d0c32a998ab1
-  - enabled: 0
-    path: Assets/ZTest/TestSQLite/TestSQLite.unity
-    guid: 7908fef7e8dd3d6468e6b429aee86f2a
   - enabled: 1
-    path: Assets/ZTest/TestR3.unity
-    guid: 498e3327003116f4fb9f093ddf105ece
+    path: Assets/Scenes/BrotatoGame.unity
+    guid: 1cad953bd033963488c3d0c32a998ab1
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: ac49e5aaf915df243a984aea5325540e,
+      type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3377b327b0df9d948ab2d651da53be87,
       type: 3}

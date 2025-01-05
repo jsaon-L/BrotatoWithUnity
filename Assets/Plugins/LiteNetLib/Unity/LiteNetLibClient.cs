@@ -3,7 +3,6 @@ using LiteNetLib.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,7 +12,7 @@ public class LiteNetLibClient : MonoBehaviour, ILiteNetLib
     public int Port = 9050;
 
     /// <summary>
-    /// ÏàÍ¬keyµÄ¿Í»§¶ËºÍ·þÎñ¶Ë²Å»áÁ¬½Óµ½Ò»Æð
+    /// ï¿½ï¿½Í¬keyï¿½Ä¿Í»ï¿½ï¿½ËºÍ·ï¿½ï¿½ï¿½Ë²Å»ï¿½ï¿½ï¿½ï¿½Óµï¿½Ò»ï¿½ï¿½
     /// </summary>
     public string ConnectKey = "key";
 
@@ -47,7 +46,7 @@ public class LiteNetLibClient : MonoBehaviour, ILiteNetLib
     private void Listener_PeerConnectedEvent(NetPeer peer)
     {
         _isConnected = true;
-        ClientDebug("Á¬½Ó³É¹¦");
+        ClientDebug("ï¿½ï¿½ï¿½Ó³É¹ï¿½");
     }
 
     private void Listener_NetworkReceiveEvent(NetPeer peer, NetPacketReader reader, byte channel, DeliveryMethod deliveryMethod)

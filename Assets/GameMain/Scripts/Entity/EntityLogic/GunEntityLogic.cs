@@ -4,18 +4,13 @@ using UnityGameFramework.Runtime;
 
 
 
-//”¶∏√Ω–Œ‰∆˜
-public class GunEntityLogic : EntityLogic
+//”¶ÔøΩ√ΩÔøΩÔøΩÔøΩÔøΩÔøΩ
+public class GunEntityLogic : WeaponEntityLogic
 {
-    Transform _attackTarget;
     Transform _bulletSpawnPostion;
 
-    //¿‰»¥ ±º‰
-    float _coldDown = 0.1f;
 
-    float _currentAttackTime;
-
-    private bool _canAttack = true;
+    private string _bulletAsset = "Assets/GameMain/Entities/Bullet.prefab";
 
 
     protected override void OnInit(object userData)
@@ -28,79 +23,48 @@ public class GunEntityLogic : EntityLogic
     {
         base.OnUpdate(elapseSeconds, realElapseSeconds);
 
-
-        //À˜µ–
-        if(_attackTarget == null)
-        {
-            _attackTarget = EnemyEntityLogic.Enemy.transform;
-        }
-
-        //º∆À„cd
-        if(!_canAttack) 
-        {
-            _currentAttackTime += elapseSeconds;
-
-            if(_currentAttackTime >= _coldDown) 
-            {
-                _canAttack = true;
-            }
-        }
-
-        LookTarget();
-        //π•ª˜
-        if (_canAttack && _attackTarget)
-        {
-            
-            Attack();
-            _canAttack = false;
-            _currentAttackTime = 0;
-            //Ω¯»Îcd
-        }
     }
 
 
-    void Attack()
+   public override void Attack()
     {
-        //∑¢…‰◊”µØ
+        base.Attack();
 
-        Vector2 dir = (_attackTarget.transform.position - _bulletSpawnPostion.transform.position).normalized;
-        var spawnData = SpawnBulletData.Create(_bulletSpawnPostion.position, dir, 1);
-        GameEntry.Entity.ShowEntity(EntityID.GetID, typeof(BulletEntityLogic), "Assets/GameMain/Entities/Bullet.prefab", "Bullet", 1, spawnData);
+        if (TargetEnemy)
+        {
 
+            Vector2 dir = (TargetEnemy.transform.position - _bulletSpawnPostion.transform.position).normalized;
+            var spawnData = SpawnBulletData.Create(_bulletSpawnPostion.position, dir, Damage, AttackRange);
+            GameEntry.Entity.ShowEntity(EntityID.GetID, typeof(BulletEntityLogic), _bulletAsset, "Bullet", 10, spawnData);
 
-        //GameEntry.Sound.PlaySound()
-        //GameEntry.Sound.PlaySound($"Assets/GameMain/Brotato/Weapons/ranged/minigun/gun_machinegun_auto_heavy_shot_{Random.Range(0, 8).ToString("D2")}.wav", "Bullet");
+            //TODO:‰ΩøÁî®GCÊõ¥Â∞ëÁöÑÂ≠óÁ¨¶‰∏≤ÊñπÂºè
+            GameEntry.Sound.PlaySound($"Assets/GameMain/Brotato/Weapons/ranged/minigun/gun_machinegun_auto_heavy_shot_{Random.Range(1, 9).ToString("D2")}.wav", "Bullet");
+        }
+
 
     }
 
 
-    void LookTarget()
-    {
-        if (_attackTarget)
-        {
-            transform.right = (_attackTarget.transform.position - transform.position).normalized;
-        }
-        else
-        {
-            transform.localRotation = Quaternion.identity;
-        }
-    }
+   
+   
 }
 
 public class SpawnBulletData : GameFramework.IReference
 {
     public Vector2 Position;
     public Vector2 Dir;
-    public float Damage;
+    //Â∞ÑÁ®ã
+    public float BulletRange;
+    public int Damage;
 
 
-    public static SpawnBulletData Create(Vector2 position, Vector2 dir,float damage)
+    public static SpawnBulletData Create(Vector2 position, Vector2 dir,int damage,float bulletRange)
     {
         var spawnData = GameFramework.ReferencePool.Acquire<SpawnBulletData>();
         spawnData.Position = position;
         spawnData.Dir = dir;
         spawnData.Damage = damage;
-
+        spawnData.BulletRange = bulletRange;
         return spawnData;
     }
 
