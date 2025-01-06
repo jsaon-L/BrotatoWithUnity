@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2500829129844050148}
   - component: {fileID: 8367728220331658615}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: highlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5436738532281816158}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6387991376727381446}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GunPosition2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1214931422777258474}
   - component: {fileID: 4494348130514137217}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1991740765091437849}
   - component: {fileID: 3389272527476268722}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6178576825067188398}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GunPosition1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1590248687094331378}
   - component: {fileID: 8040021764714023595}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3086363355275985261}
   - component: {fileID: 5363217182412840367}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: robe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4601808144262580884}
   - component: {fileID: 7662306219268460402}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}

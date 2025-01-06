@@ -19,15 +19,15 @@ MonoBehaviour:
     m_Value:
       m_ForceUpdateGame: 0
       m_LatestGameVersion: 0.1.69
-      m_InternalGameVersion: 22
+      m_InternalGameVersion: 24
       m_ServerPath: http://192.168.50.60/WebRoot
-      m_ResourceVersion: 0_1_69_21
+      m_ResourceVersion: 0_1_69_23
       m_Platform: 2
       m_VersionListLength: 3046
-      m_InternalResourceVersion: 21
-      m_VersionListHashCode: -1867965000
-      m_VersionListCompressedLength: 948
-      m_VersionListCompressedHashCode: 115873533
+      m_InternalResourceVersion: 23
+      m_VersionListHashCode: 574433781
+      m_VersionListCompressedLength: 993
+      m_VersionListCompressedHashCode: -569113881
       m_IsShowCanNotChangeProperty: 0
   m_IsGenerateToFullPath: 1
   m_OutPath: H:/tmp/BuildAB/WebRoot/WindowsVersion.txt

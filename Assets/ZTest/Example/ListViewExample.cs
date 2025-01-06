@@ -9,8 +9,8 @@ namespace GFExample
 {
     public class ListViewExample : MonoBehaviour
     {
-        //ÎŞÏŞÁĞ±íÈİÆ÷£¬PageViewÓÃ·¨Í¬Àí
-        //Ê¹ÓÃÊ¹ÓÃ¼¸¸öGameObject À´Õ¹Ê¾ÎŞÏŞ¶àµÄÊı¾İ£¬¶ø²»ÓÃÕæµÄÊµÀı»¯ÄÇÃ´¶àGameObject
+        //æ— é™åˆ—è¡¨å®¹å™¨ï¼ŒPageViewç”¨æ³•åŒç†
+        //ä½¿ç”¨ä½¿ç”¨å‡ ä¸ªGameObject æ¥å±•ç¤ºæ— é™å¤šçš„æ•°æ®ï¼Œè€Œä¸ç”¨çœŸçš„å®ä¾‹åŒ–é‚£ä¹ˆå¤šGameObject
 
         public GameObject prefabTest;
 
@@ -21,7 +21,7 @@ namespace GFExample
         // Start is called before the first frame update
         void Start()
         {
-            //³õÊ¼»¯²âÊÔÊı¾İ
+            //åˆå§‹åŒ–æµ‹è¯•æ•°æ®
             for (int i = 0; i < 100; i++)
             {
                 ListViewDatas.Add(i.ToString());
@@ -31,19 +31,19 @@ namespace GFExample
 
             ListView.FuncTab funcTab = new ListView.FuncTab();
 
-            //¼ÙÉèÄãµÄÈİÆ÷ÄÚÖ»ÓĞÒ»ÖÖprefab ÄÇÃ´Ö»ĞèÒª¹ØĞÄÕâÒ»¸öº¯Êı¾ÍĞĞ
-            //ÓÉÓÚÖ»ÓĞÉÙÊı¼¸¸öGameObjectÖØ¸´Ê¹ÓÃ£¬ËùÒÔÎÒÃÇĞèÒª²»¶ÏµÄ¸øprefabÉèÖÃĞÂÊı¾İ
-            //Ã¿´ÎÈçºÎ½«Êı¾İÓëGameObject¶ÔÓ¦ÏÔÊ¾¾Í¿¿Õâ¸öº¯Êı
+            //å‡è®¾ä½ çš„å®¹å™¨å†…åªæœ‰ä¸€ç§prefab é‚£ä¹ˆåªéœ€è¦å…³å¿ƒè¿™ä¸€ä¸ªå‡½æ•°å°±è¡Œ
+            //ç”±äºåªæœ‰å°‘æ•°å‡ ä¸ªGameObjecté‡å¤ä½¿ç”¨ï¼Œæ‰€ä»¥æˆ‘ä»¬éœ€è¦ä¸æ–­çš„ç»™prefabè®¾ç½®æ–°æ•°æ®
+            //æ¯æ¬¡å¦‚ä½•å°†æ•°æ®ä¸GameObjectå¯¹åº”æ˜¾ç¤ºå°±é è¿™ä¸ªå‡½æ•°
             funcTab.ItemEnter = ItemEnter;
 
-            //¶¨ÒåÒ»¸ö×ÖµäÓÃÀ´´¦ÀíÈİÆ÷ÄÚ¿ÉÄÜÓĞ¶à¸öPrefabµÄÇé¿ö
+            //å®šä¹‰ä¸€ä¸ªå­—å…¸ç”¨æ¥å¤„ç†å®¹å™¨å†…å¯èƒ½æœ‰å¤šä¸ªPrefabçš„æƒ…å†µ
             Dictionary<string, GameObject> list = new Dictionary<string, GameObject>
             {
                 { "Prefab1", prefabTest }
             };
-            //³õÊ¼»¯ListView 
+            //åˆå§‹åŒ–ListView 
             m_sv_list_view_ListView.SetInitData(list, funcTab);
-            //¸æËßListView ÎÒÃÇÓĞ¶àÉÙ¸öÊı¾İ
+            //å‘Šè¯‰ListView æˆ‘ä»¬æœ‰å¤šå°‘ä¸ªæ•°æ®
             m_sv_list_view_ListView.FillContent(10);
         }
 
@@ -51,10 +51,10 @@ namespace GFExample
         {
             //listItem.go.GetComponent<Image>().color = UnityEngine.Random.ColorHSV();
 
-            //ÓÉÓÚÑ­»·¸´ÓÃGameObject ËùÒÔµ±Ò»¸öunity ÎïÌåÒÔÒ»¸öĞÂÊı¾İÉí·İ³öÏÖµÄÊ±ºòµ÷ÓÃ
-            //ÕâÀïÎÒÃÇÓ¦¸Ã±£Ö¤ ÎÒÃÇÊı¾İ³¤¶ÈListViewDatasÓëFillContent Ó¦¸ÃÒ»ÖÂ
-            //ÎÒÃÇÔÚÕâÀï½«ListViewDatasµÄÊı¾İÈ¡³ö°´ÕÕ¹æÔòÉèÖÃ¸øPrefab
-            //TODO£ºÊ¹ÓÃ¶àÌ¬¹¹ÔìÒ»¸öItem½Å±¾£¬ÏÂÃæµÄ²Ù×÷·Åµ½ItemÏÂ£¬²¢ÇÒÔÚListView.ListItemÖĞ»º´æ´Ë½Å±¾£¬Í¨¹ı½Ó¿ÚÒÔ¼°´´½¨×ÓÀàÀ´×Ô¶¨ÒåÕâĞ©²Ù×÷
+            //ç”±äºå¾ªç¯å¤ç”¨GameObject æ‰€ä»¥å½“ä¸€ä¸ªunity ç‰©ä½“ä»¥ä¸€ä¸ªæ–°æ•°æ®èº«ä»½å‡ºç°çš„æ—¶å€™è°ƒç”¨
+            //è¿™é‡Œæˆ‘ä»¬åº”è¯¥ä¿è¯ æˆ‘ä»¬æ•°æ®é•¿åº¦ListViewDatasä¸FillContent åº”è¯¥ä¸€è‡´
+            //æˆ‘ä»¬åœ¨è¿™é‡Œå°†ListViewDatasçš„æ•°æ®å–å‡ºæŒ‰ç…§è§„åˆ™è®¾ç½®ç»™Prefab
+            //TODO:ä½¿ç”¨å¤šæ€æ„é€ ä¸€ä¸ªItemè„šæœ¬ï¼Œä¸‹é¢çš„æ“ä½œæ”¾åˆ°Itemä¸‹ï¼Œå¹¶ä¸”åœ¨ListView.ListItemä¸­ç¼“å­˜æ­¤è„šæœ¬ï¼Œé€šè¿‡æ¥å£ä»¥åŠåˆ›å»ºå­ç±»æ¥è‡ªå®šä¹‰è¿™äº›æ“ä½œ
             listItem.go.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = ListViewDatas[listItem.index];
         }
 

@@ -55,7 +55,6 @@ public class EnemyEntityLogic : Pawn
         
         }
 
-        //�˺���Ч
         if (_showHitEffecting)
         {
             _currentHitEffectTime += elapseSeconds;
@@ -77,6 +76,7 @@ public class EnemyEntityLogic : Pawn
     }
     public void HideHitEffect()
     {
+        //TODO:这里不应该使用材质开关,而应该控制数值 需要看文档确认一下
         _showHitEffecting = false;
         _currentHitEffectTime = 0;
         BodyMaterial.DisableKeyword("HITEFFECT_ON");

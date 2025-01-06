@@ -59,14 +59,14 @@ public class EnemyManager :MonoSingleton<EnemyManager>
             return (null,0);
         }
 
-        //TODO:使用四叉树等更高效的数据结构,以及不使用距离而是使用距离的平方减少开方消耗
+        //TODO:使用四叉树或者KD树等更高效的数据结构
         int enemyIndex = 0;
-        float enemyDistance = Vector2.Distance(playerWorldPosition, Enemys[0].GetWordPosition());
+        float enemyDistance = (playerWorldPosition - Enemys[0].GetWordPosition()).sqrMagnitude;
 
 
         for (int i = 1; i < Enemys.Count; i++)
         {
-            float distance = Vector2.Distance(playerWorldPosition, Enemys[i].GetWordPosition());
+            float distance = (playerWorldPosition- Enemys[i].GetWordPosition()).sqrMagnitude;
 
             if (distance < enemyDistance)
             {

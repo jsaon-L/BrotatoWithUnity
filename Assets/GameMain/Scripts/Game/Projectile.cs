@@ -5,8 +5,8 @@ using UnityEngine;
 
 
 /// <summary>
-/// ×¨ÃÅ¿ØÖÆ×Óµ¯·ÉĞĞµÄ×é¼ş
-/// Ä¬ÈÏÏòright·½Ïò·ÉĞĞ
+/// ä¸“é—¨æ§åˆ¶å­å¼¹é£è¡Œçš„ç»„ä»¶
+/// é»˜è®¤å‘rightæ–¹å‘é£è¡Œ
 /// </summary>
 public class Projectile : MonoBehaviour
 {
@@ -19,11 +19,11 @@ public class Projectile : MonoBehaviour
     public float BulletRange;
 
     /// <summary>
-    /// µ½´ïÉä³Ì¾¡Í·
+    /// åˆ°è¾¾å°„ç¨‹å°½å¤´
     /// </summary>
     public event Action OnEndBulletRange;
 
-    //TODO:°ÑÅĞ¶Ï¾àÀë¸ÄÎªÆ½·½µÄ±È½Ï,ÕâÑù²»ÓÃ¿ª¸ùºÅÁË
+    //TODO:æŠŠåˆ¤æ–­è·ç¦»æ”¹ä¸ºå¹³æ–¹çš„æ¯”è¾ƒ,è¿™æ ·ä¸ç”¨å¼€æ ¹å·äº†
     private void Update()
     {
         if (IsActive)
