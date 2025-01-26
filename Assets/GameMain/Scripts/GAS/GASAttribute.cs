@@ -9,6 +9,10 @@ public class GASAttribute
     public float Base;
     public float Modifier;
 
+
+    /// <summary>
+    /// originalValue, modification
+    /// </summary>
     public UnityEvent<float, GASAttributeModification> OnAttributeChanged;
 
     public GASAttribute()

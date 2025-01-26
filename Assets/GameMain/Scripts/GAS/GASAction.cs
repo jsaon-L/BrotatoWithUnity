@@ -22,7 +22,7 @@ public class GASAction
     //仅当所属角色未应用这些标签中的任何一个时，动作才能开始。
     public GameplayTagContainer BlockedTags;
 
-    public void Initialize(ActionComponent owner)
+    public virtual void Initialize(ActionComponent owner)
     {
         ActionComp = owner;
     }
@@ -51,7 +51,7 @@ public class GASAction
         return true;
     }
 
-    public void StartAction(GameObject instigator)
+    public virtual void StartAction(GameObject instigator)
     {
         //TODO: UE使用函数 Comp->ActiveGameplayTags.AppendTags(GrantsTags); 需要确认他与AddTags 有什么区别
         
@@ -64,7 +64,7 @@ public class GASAction
         ActionComp.OnActionStarted.Invoke(ActionComp, this); 
 
     }
-    public void StopAction(GameObject instigator)
+    public virtual void StopAction(GameObject instigator)
     {
         ActionComp.ActiveGameplayTags.RemoveTags(GrantsTags);
 

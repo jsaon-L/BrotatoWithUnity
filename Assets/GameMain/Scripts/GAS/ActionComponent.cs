@@ -14,7 +14,7 @@ public class ActionComponent : MonoBehaviour
 
 
     //Attribute
-    protected AttributeSetHealth AttributeSet;
+    protected AttributeSet AttributeSet;
 
     //Action
 
@@ -22,10 +22,6 @@ public class ActionComponent : MonoBehaviour
     public UnityEvent<ActionComponent, GASAction> OnActionStopped;
 
     protected List<GASAction> Actions;
-
-
-
-
 
 
 
@@ -43,8 +39,8 @@ public class ActionComponent : MonoBehaviour
                 action.StartAction(instigator);
             }
         }
-
     }
+
     public void RemoveAction(GASAction action)
     {
         //TODO:
@@ -115,6 +111,52 @@ public class ActionComponent : MonoBehaviour
                 action.StopAction(gameObject);
             }
         }
+    }
+
+    public GASAttribute GetAttribute(GameplayTag attributeTag)
+    {
+        return AttributeSet.GetAttribute(attributeTag);
+    }
+
+    public bool ApplyAttributeChange(GASAttributeModification modification)
+    {
+        if (modification == null)
+        {
+            Debug.LogError($"modification is Null!");
+            return false;
+        }
+
+        var attribute = GetAttribute(modification.AttributeTag);
+        if(attribute == null)
+        {
+            Debug.LogError($"attribute {modification.AttributeTag.Name} Not found on GameObject!");
+            return false;
+        }
+
+        float originalValue = attribute.GetValue();
+
+        switch (modification.ModifyType)
+        {
+            case EAttributeModifyType.AddBase:
+                attribute.Base += modification.Magnitude;
+                break;
+            case EAttributeModifyType.MultipliBase:
+                attribute.Base *= modification.Magnitude;
+                break;
+            case EAttributeModifyType.OverrideBase:
+                attribute.Base = modification.Magnitude;
+                break;
+            default:
+                break;
+        }
+
+        if (originalValue != attribute.GetValue()) 
+        {
+            attribute.OnAttributeChanged.Invoke(originalValue, modification);
+            return true;
+        }
+
+        return false;
     }
 
 }
