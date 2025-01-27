@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GASAttributeModification 
+[CreateAssetMenu(fileName = "AttributeModification",menuName = "GAS/AttributeModification")]
+public class GASAttributeModification : ScriptableObject
 {
 
     public GameplayTag AttributeTag;

@@ -6,18 +6,18 @@ using UnityEngine;
 public enum EffectType
 {
     /// <summary>
-    /// ˲ʱ(Instant)
+    /// 瞬时(Instant) 就是没有周期执行,只启动一次
     /// </summary>
-    [LabelText("˲ʱ(Instant)", SdfIconType.LightningCharge)]
+    [LabelText("瞬时", SdfIconType.LightningCharge)]
     Instant = 1,
     /// <summary>
-    /// ����(Infinite)
+    /// 永久(Infinite)
     /// </summary>
-    [LabelText("����(Infinite)", SdfIconType.Infinity)]
+    [LabelText("永久", SdfIconType.Infinity)]
     Infinite,
     /// <summary>
-    /// ��ʱ(Duration)
+    /// 限时(Duration)
     /// </summary>
-    [LabelText("��ʱ(Duration)", SdfIconType.HourglassSplit)]
+    [LabelText("限时", SdfIconType.HourglassSplit)]
     Duration
 }

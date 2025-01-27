@@ -14,28 +14,31 @@ public class ActionComponent : MonoBehaviour
 
 
     //Attribute
-    protected AttributeSet AttributeSet;
+    protected AttributeSet AttributeSet = new AttributeSet();
 
     //Action
 
     public UnityEvent<ActionComponent, GASAction> OnActionStarted;
     public UnityEvent<ActionComponent, GASAction> OnActionStopped;
-
+    [SerializeField]
     protected List<GASAction> Actions;
 
 
 
-    public void AddAction(GameObject instigator,Type actionType)
+    public void AddAction(GameObject instigator, GASAction action)
     {
-        //TODO:判断type是否是 GASAction 子类
-        GASAction action = Activator.CreateInstance(actionType) as GASAction;
-
         if (action!=null)
         {
             action.Initialize(this);
             Actions.Add(action);
-            if (action.IsAutoStart()&&action.CanStart(instigator))
+
+            Debug.Log("AddAction");
+            Debug.Log("IsAutoStart" + action.IsAutoStart());
+            Debug.Log("CanStart" + action.CanStart(instigator));
+
+            if (action.IsAutoStart() && action.CanStart(instigator))
             {
+                Debug.Log("AddAction start");
                 action.StartAction(instigator);
             }
         }
@@ -117,7 +120,25 @@ public class ActionComponent : MonoBehaviour
     {
         return AttributeSet.GetAttribute(attributeTag);
     }
+    public void AddAttribute(GameplayTag attributeTag)
+    {
+        AttributeSet.AddAttribute(attributeTag);
+    }
 
+    public bool ApplyAttributeChange(GameplayTag attributeTag, EAttributeModifyType ModifyType, float Magnitude,
+        ActionComponent target,
+        ActionComponent instigator)
+    {
+       var modification = ScriptableObject.CreateInstance<GASAttributeModification>();
+
+        modification.AttributeTag = attributeTag;
+        modification.ModifyType = ModifyType;
+        modification.Magnitude = Magnitude;
+        modification.Target = target;
+        modification.Instigator = instigator;
+        return ApplyAttributeChange(modification);
+
+    }
     public bool ApplyAttributeChange(GASAttributeModification modification)
     {
         if (modification == null)
@@ -132,6 +153,8 @@ public class ActionComponent : MonoBehaviour
             Debug.LogError($"attribute {modification.AttributeTag.Name} Not found on GameObject!");
             return false;
         }
+
+        Debug.Log("ApplyAttributeChange");
 
         float originalValue = attribute.GetValue();
 
@@ -152,7 +175,7 @@ public class ActionComponent : MonoBehaviour
 
         if (originalValue != attribute.GetValue()) 
         {
-            attribute.OnAttributeChanged.Invoke(originalValue, modification);
+            attribute.OnAttributeChanged?.Invoke(originalValue, modification);
             return true;
         }
 

@@ -1,14 +1,22 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "Effect",menuName = "GAS/Effect")]
 public class GASActionEffect : GASAction
 {
-    //TODO:¸ù¾İÑ¡ÔñÀàĞÍ ĞŞ¸ÄÏÔÊ¾×Ö¶Î
-    //Ë²Ê±ÊÇÌí¼ÓµÄÊ±ºòÖ´ĞĞ,ÆäËûµÄÊÇ¸ù¾İÖÜÆÚÖ´ĞĞ
-    public EffectType EffectType;
+    //TODO:æ ¹æ®é€‰æ‹©ç±»å‹ ä¿®æ”¹æ˜¾ç¤ºå­—æ®µ
+    //ç¬æ—¶æ˜¯æ·»åŠ çš„æ—¶å€™æ‰§è¡Œ,å…¶ä»–çš„æ˜¯æ ¹æ®å‘¨æœŸæ‰§è¡Œ
+    [Title("Effect")]
+    [EnumToggleButtons]
+    public EffectType EffectType = EffectType.Instant;
 
+
+    [ShowIf("EffectType", EffectType.Duration)]
     public float Duration;
+    [HideIf("EffectType", EffectType.Instant)]
     public float Period;
 
     public List<GASAttributeModification> AttributeModification;
@@ -17,7 +25,7 @@ public class GASActionEffect : GASAction
     protected Timer _durationTimer;
     protected Timer _periodTimer;
 
-    //TODO:Effect ¶Ñµş,±ÈÈçÎÒÒ»¸ö·¢ÉäÎï,µÈÎÒÔÜÁËºÃ¼¸¸ö,Ò»ÏÂ·¢ÉäºÃ¼¸¸ö
+    //TODO:Effect å †å ,æ¯”å¦‚æˆ‘ä¸€ä¸ªå‘å°„ç‰©,ç­‰æˆ‘æ”’äº†å¥½å‡ ä¸ª,ä¸€ä¸‹å‘å°„å¥½å‡ ä¸ª
 
     public GASActionEffect()
     {
@@ -26,17 +34,19 @@ public class GASActionEffect : GASAction
 
   
 
+
     public override void StartAction(GameObject instigator)
     {
         base.StartAction(instigator);
 
+        Debug.Log("StartAction");
 
         if (EffectType != EffectType.Instant)
         {
-            if (Duration > 0)
+            if (EffectType == EffectType.Duration && Duration > 0)
             {
-                //TODO:¸ù¾İÀàĞÍ EffectType ÅĞ¶ÏÊÇ·ñ½øĞĞÈ¡Ïû¼ÆÊ±
-                //ÉèÖÃ¶¨Ê±Æ÷È¡Ïûeffect
+                //TODO:æ ¹æ®ç±»å‹ EffectType åˆ¤æ–­æ˜¯å¦è¿›è¡Œå–æ¶ˆè®¡æ—¶
+                //è®¾ç½®å®šæ—¶å™¨å–æ¶ˆeffect
                 _durationTimer = Timer.Register(Duration, () => { StopAction(instigator); });
             }
 
@@ -56,7 +66,7 @@ public class GASActionEffect : GASAction
     public override void StopAction(GameObject instigator)
     {
         base.StopAction(instigator);
-        //TODO:Èç¹ûÊÇ¿ÉÒÔÊÇÖÜÆÚÀàĞÍ,ÕâÀï¼ì²éÒ»ÏÂÊÇ²»ÊÇ¸ÕºÃ¿¨ÔÚ×îºóÒ»´ÎÖÜÆÚ,ÒªÖ´ĞĞÒ»ÏÂ
+        //TODO:å¦‚æœæ˜¯å¯ä»¥æ˜¯å‘¨æœŸç±»å‹,è¿™é‡Œæ£€æŸ¥ä¸€ä¸‹æ˜¯ä¸æ˜¯åˆšå¥½å¡åœ¨æœ€åä¸€æ¬¡å‘¨æœŸ,è¦æ‰§è¡Œä¸€ä¸‹
 
         if (
             EffectType != EffectType.Instant
@@ -76,8 +86,10 @@ public class GASActionEffect : GASAction
 
     public virtual void ExecutePeriodicEffect(GameObject instigator)
     {
-       //ÕâÀï¿ÉÒÔ·¢ÉäÎïÆ·,»òÕß¸ÉµãÉ¶
+        Debug.Log("ExecutePeriodicEffect");
+        //è¿™é‡Œå¯ä»¥å‘å°„ç‰©å“,æˆ–è€…å¹²ç‚¹å•¥
 
+        ExecuteAttributeModification();
     }
 
 

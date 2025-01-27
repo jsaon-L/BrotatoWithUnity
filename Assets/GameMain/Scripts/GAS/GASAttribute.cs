@@ -19,6 +19,7 @@ public class GASAttribute
     {
         Base = 0;
         Modifier = 0;
+        OnAttributeChanged = new UnityEvent<float, GASAttributeModification>();
     }
     public GASAttribute(float inBase)
     {
