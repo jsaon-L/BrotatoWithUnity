@@ -20,6 +20,7 @@ public class GASActionEffect : GASAction
     public float Period;
 
     public List<GASAttributeModification> AttributeModification;
+    public List<AttributeModificationData> AttributeModificationData;
 
 
     protected Timer _durationTimer;
@@ -99,6 +100,14 @@ public class GASActionEffect : GASAction
         {
             ActionComp.ApplyAttributeChange(modification);
         }
+
+        foreach (var item in AttributeModificationData)
+        {
+            ActionComp.ApplyAttributeChange(item.AttributeKey, item.ModifyType, item.Value,null,null);
+        }
     }
 
 }
+
+
+//TODO:效果

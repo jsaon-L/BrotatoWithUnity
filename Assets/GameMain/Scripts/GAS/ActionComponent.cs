@@ -8,7 +8,6 @@ using UnityEngine.Events;
 public class ActionComponent : MonoBehaviour
 {
 
-
     //Tag
     public GameplayTagContainer ActiveGameplayTags;
 
@@ -55,7 +54,7 @@ public class ActionComponent : MonoBehaviour
 
         if (action.IsRunning())
         {
-            Debug.LogError("不能移除正在运行中的技能："+ action.ActivationTag.Name);
+            Debug.LogError("不能移除正在运行中的技能："+ action.ID);
             return;
         }
 
@@ -64,15 +63,15 @@ public class ActionComponent : MonoBehaviour
 
 
 
-    public bool StartActionByName(GameObject instigator,GameplayTag actionName)
+    public bool StartActionByName(GameObject instigator,string actionName)
     {
         foreach (var action in Actions)
         {
-            if (action.ActivationTag == actionName)
+            if (action.ID == actionName)
             {
                 if (!action.CanStart(instigator))
                 {
-                    Debug.LogError("不能启动技能："+ actionName.Name);
+                    Debug.LogError("不能启动技能："+ actionName);
                     continue;
                 }
 
@@ -91,7 +90,7 @@ public class ActionComponent : MonoBehaviour
     {
         foreach (var action in Actions)
         {
-            if (action.ActivationTag == actionName)
+            if (action.ID == actionName)
             {
                 if (action.IsRunning())
                 {
@@ -116,24 +115,24 @@ public class ActionComponent : MonoBehaviour
         }
     }
 
-    public GASAttribute GetAttribute(GameplayTag attributeTag)
+    public GASAttribute GetAttribute(string attributeKey)
     {
-        return AttributeSet.GetAttribute(attributeTag);
+        return AttributeSet.GetAttribute(attributeKey);
     }
-    public void AddAttribute(GameplayTag attributeTag)
+    public GASAttribute AddAttribute(string attributeKey)
     {
-        AttributeSet.AddAttribute(attributeTag);
+        return AttributeSet.AddAttribute(attributeKey);
     }
 
-    public bool ApplyAttributeChange(GameplayTag attributeTag, EAttributeModifyType ModifyType, float Magnitude,
+    public bool ApplyAttributeChange(string attributeKey, EAttributeModifyType ModifyType, float Magnitude,
         ActionComponent target,
         ActionComponent instigator)
     {
        var modification = ScriptableObject.CreateInstance<GASAttributeModification>();
 
-        modification.AttributeTag = attributeTag;
+        modification.AttributeKey = attributeKey;
         modification.ModifyType = ModifyType;
-        modification.Magnitude = Magnitude;
+        modification.Value = Magnitude;
         modification.Target = target;
         modification.Instigator = instigator;
         return ApplyAttributeChange(modification);
@@ -147,36 +146,45 @@ public class ActionComponent : MonoBehaviour
             return false;
         }
 
-        var attribute = GetAttribute(modification.AttributeTag);
-        if(attribute == null)
+        if (modification.ModifyType == EAttributeModifyType.Add)
         {
-            Debug.LogError($"attribute {modification.AttributeTag.Name} Not found on GameObject!");
-            return false;
-        }
-
-        Debug.Log("ApplyAttributeChange");
-
-        float originalValue = attribute.GetValue();
-
-        switch (modification.ModifyType)
-        {
-            case EAttributeModifyType.AddBase:
-                attribute.Base += modification.Magnitude;
-                break;
-            case EAttributeModifyType.MultipliBase:
-                attribute.Base *= modification.Magnitude;
-                break;
-            case EAttributeModifyType.OverrideBase:
-                attribute.Base = modification.Magnitude;
-                break;
-            default:
-                break;
-        }
-
-        if (originalValue != attribute.GetValue()) 
-        {
+            var attribute = GetAttribute(modification.AttributeKey);
+            if (attribute == null)
+            {
+                Debug.LogError($"attribute {modification.AttributeKey} Not found on GameObject!");
+                return false;
+            }
+            float originalValue = attribute.GetValue();
+            attribute.Modifier += modification.Value;
             attribute.OnAttributeChanged?.Invoke(originalValue, modification);
             return true;
+
+        }
+        else if (modification.ModifyType == EAttributeModifyType.Override)
+        {
+            var attribute = GetAttribute(modification.AttributeKey);
+            if (attribute == null)
+            {
+                Debug.LogError($"attribute {modification.AttributeKey} Not found on GameObject!");
+                return false;
+            }
+            float originalValue = attribute.GetValue();
+            attribute.Modifier = modification.Value;
+            attribute.OnAttributeChanged?.Invoke(originalValue, modification);
+            return true;
+
+        }
+        else if (modification.ModifyType == EAttributeModifyType.CustomKey)
+        {
+            var attribute = AddAttribute(modification.AttributeKey);
+            float originalValue = attribute.GetValue();
+            attribute.Modifier = modification.Value;
+            attribute.OnAttributeChanged?.Invoke(originalValue, modification);
+            return true;
+        }
+        else {
+
+            Debug.LogError("没有实现类型的数据修改:"+modification.ModifyType);
         }
 
         return false;

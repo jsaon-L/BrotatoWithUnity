@@ -6,21 +6,25 @@ using UnityEngine;
 public class AttributeSet
 {
 
-    protected Dictionary<GameplayTag,GASAttribute> _attributes = new Dictionary<GameplayTag, GASAttribute>();
+    protected Dictionary<string,GASAttribute> _attributes = new Dictionary<string, GASAttribute>();
 
-    public virtual GASAttribute GetAttribute(GameplayTag attributeTag)
+    public virtual GASAttribute GetAttribute(string attributeKey)
     {
-        if (_attributes.TryGetValue(attributeTag, out var attr))
+        if (_attributes.TryGetValue(attributeKey, out var attr))
         {
             return attr;
         }
         return null;
     }
 
-    public virtual void AddAttribute(GameplayTag attributeTag)
+    public virtual GASAttribute AddAttribute(string attributeKey)
     {
+        if (_attributes.ContainsKey(attributeKey))
+        {
+            return _attributes[attributeKey];
+        }
 
-        _attributes[attributeTag] = new GASAttribute();
+        return _attributes[attributeKey] = new GASAttribute();
 
     }
 

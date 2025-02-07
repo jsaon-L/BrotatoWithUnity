@@ -32,9 +32,10 @@ namespace StarForce
         {
             base.OnEnter(procedureOwner);
 
-            AwaitableExtensions.SubscribeEvent();
 
             
+
+
             
 
             var player = await GameEntry.Entity.ShowEntityAsync(

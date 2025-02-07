@@ -7,6 +7,7 @@
 
 using GameFramework.Localization;
 using System;
+using UGFExtensions.Await;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
@@ -26,14 +27,16 @@ namespace StarForce
         {
             base.OnEnter(procedureOwner);
 
+            AwaitableExtensions.SubscribeEvent();
+
 #if !UNITY_EDITOR
             GameEntry.Resource.InitResources(() => {
 
-                ChangeState<ProcedureGameStart>(procedureOwner);
+                ChangeState<ProcedureGamePreload>(procedureOwner);
             
             });
 #else
-            ChangeState<ProcedureGameStart>(procedureOwner);
+            ChangeState<ProcedureGamePreload>(procedureOwner);
 
 #endif
 

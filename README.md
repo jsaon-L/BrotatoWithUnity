@@ -12,6 +12,14 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2931079751
 
 # Step2 Get game design
 拆解整理游戏设计,形成策划文档
+
+土豆兄弟wiki
+https://brotato.wiki.spellsandguns.com/Brotato_Wiki
+攻速计算器
+https://brotato.codemuffin.com/attack-speed/
+玩法拆解视频
+https://www.bilibili.com/video/BV1d34y1G7s7/
+
 1.游戏性(如何好玩)
 2.架构性(如何抽象)
 

@@ -20,7 +20,8 @@ public class GASAction :ScriptableObject
 
     //就是这个action的名字
     [Title("SelfName")]
-    public GameplayTag ActivationTag;
+    public string ID;
+
     [Title("Tags")]
     //激活时添加到所属角色的标签，动作停止时移除。
     public GameplayTagContainer GrantsTags;

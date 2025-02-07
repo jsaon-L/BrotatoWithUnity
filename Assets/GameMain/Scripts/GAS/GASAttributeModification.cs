@@ -7,33 +7,50 @@ using UnityEngine;
 public class GASAttributeModification : ScriptableObject
 {
 
-    public GameplayTag AttributeTag;
+    public string AttributeKey;
     public EAttributeModifyType ModifyType;
-    public float Magnitude;
+    public float Value;
+    public EffectSign EffectSign = EffectSign.FROM_VALUE;
 
     /// <summary>
     /// 目标
     /// </summary>
+    /// 
+    [HideInInspector]
     public ActionComponent Target;
     /// <summary>
     /// 发起者
     /// </summary>
+    /// 
+    [HideInInspector]
     public ActionComponent Instigator;
 
 
     public GASAttributeModification(
-        GameplayTag attributeTag,
+        string attributeKey,
         float magnitude, 
         ActionComponent target, 
         ActionComponent instigator,
         EAttributeModifyType modifyType
         )
     {
-        AttributeTag = attributeTag;
-        Magnitude = magnitude;
+        AttributeKey = attributeKey;
+        Value = magnitude;
+        ModifyType = modifyType;
         Target = target;
         Instigator = instigator;
-        ModifyType = modifyType;
+        
     }
 
+
+    //TODO:添加获取标签函数
+}
+
+[System.Serializable]
+public class AttributeModificationData
+{
+    public string AttributeKey;
+    public EAttributeModifyType ModifyType;
+    public float Value;
+    public EffectSign EffectSign = EffectSign.FROM_VALUE;
 }

@@ -1,7 +1,11 @@
 
 public enum EAttributeModifyType
 {
-    AddBase,
-    MultipliBase,
-    OverrideBase,
+    Add,
+    CustomKey,
+    Override,
+
+    //SUM,
+    //KEY_VALUE,
+    //REPLACE
 }

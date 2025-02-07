@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a9d41a87360764d8fc5f1f7714a43b, type: 3}
+  m_Name: Alloy_Effect
+  m_EditorClassIdentifier: 
+  AutoStart: 1
+  ID: item_alloy
+  GrantsTags:
+    m_SerializedExplicitTags: []
+  BlockedTags:
+    m_SerializedExplicitTags: []
+  EffectType: 1
+  Duration: 0
+  Period: 0
+  AttributeModification:
+  - {fileID: 11400000, guid: 009387cb24f91844c9fbef77f2a54c45, type: 2}
+  - {fileID: 11400000, guid: 0068ec14fb077c84d9f42b75b6b5668e, type: 2}
+  - {fileID: 11400000, guid: 749e652ec481e9a4186307feb015d093, type: 2}
+  - {fileID: 11400000, guid: 114d793f01144b34fb88fa50d6aa9086, type: 2}
+  - {fileID: 11400000, guid: 39bf1afd36ebd874c958085a938a5886, type: 2}
+  - {fileID: 11400000, guid: fea188aa4908b3845a9cf991a1c68947, type: 2}
+  AttributeModificationData:
+  - AttributeKey: 
+    ModifyType: 0
+    Value: 0
+    EffectSign: 3
+  - AttributeKey: 
+    ModifyType: 0
+    Value: 0
+    EffectSign: 3
